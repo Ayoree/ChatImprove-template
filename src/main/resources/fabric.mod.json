@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "chatimprove_template",
+	"version": "${version}",
+	"name": "ChatImprove template",
+	"description": "This is a template, used for creating Minecraft mod-addons for ChatImprover mod",
+	"authors": [
+		"Ayoree"
+	],
+	"contact": {
+		"homepage": "https://github.com/Ayoree/ChatImprove-template"
+	},
+	"license": "AGPL-3.0",
+	"icon": "assets/chatimprove_template/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"org.ayoree.chatimprove.template.ChatImprove_template"
+		]
+	},
+	"mixins": [],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.10",
+		"java": ">=21",
+		"fabric-api": "*",
+		"chatimprover": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"parent": "chatimprover"
+		}
+	}
+}
