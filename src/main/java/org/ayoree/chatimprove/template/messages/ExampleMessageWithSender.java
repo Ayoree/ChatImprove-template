@@ -24,6 +24,7 @@ import java.util.function.Predicate;
 
 import org.ayoree.chatimprove.template.AddonInformerImpl;
 import org.ayoree.chatimprover.api.ChatMessage;
+import org.ayoree.chatimprover.api.ChatMessageWithSender;
 
 import com.google.auto.service.AutoService;
 
@@ -31,27 +32,28 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 
-public class ExampleMessage extends ChatMessage {
-    public ExampleMessage(Text message) {
+// extends `ChatMessageWithSender`
+public class ExampleMessageWithSender extends ChatMessageWithSender {
+    public ExampleMessageWithSender(Text message) {
         super(message);
+        // Setting senderNick
+        setSenderNick(getMessageStr().substring(0, getMessageStr().indexOf(' '))); // 
     }
 
     // This annotation is necessary
     @AutoService(Provider.class)
     public static class ProviderImpl extends AddonInformerImpl implements Provider {
-        // ExampleMessage instance will be created only if original message passes this validator
-        // In this case ExampleMessage instance will be created only if original message contains "BlaBlaBla"
         @Override
         public Predicate<Text> validator() {
             return message -> {
                 return (
-                    message.getString().contains("BlaBlaBla")
+                    message.getString().startsWith("CoolNick -> ...")
                 );
             };
         }
         @Override
         public Function<Text, ChatMessage> creator() {
-            return ExampleMessageWithSender::new;
+            return ExampleMessage::new;
         }
     }
 
