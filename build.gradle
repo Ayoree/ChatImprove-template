@@ -23,13 +23,12 @@ repositories {
         url = uri("https://maven.pkg.github.com/Ayoree/ChatImprover")
         credentials {
             username = 'Ayoree'
-            password = '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'
+            password = System.getenv("AYOREE_GET_PACKAGES_KEY") // Ask for it, if you want
         }
-   }
+   	}
 }
 
 dependencies {
-
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
@@ -87,6 +86,5 @@ publishing {
 			from components.java
 		}
 	}
-	repositories {
-	}
+	repositories {}
 }
