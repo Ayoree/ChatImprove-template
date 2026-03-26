@@ -37,7 +37,7 @@ public class ExampleMessageWithSender extends ChatMessageWithSender {
     public ExampleMessageWithSender(Text message) {
         super(message);
         // Setting senderNick
-        setSenderNick(getMessageStr().substring(0, getMessageStr().indexOf(' '))); // 
+        setSenderNick(getMessageStr().substring(0, getMessageStr().indexOf(' '))); // !!!
     }
 
     // This annotation is necessary
@@ -59,10 +59,9 @@ public class ExampleMessageWithSender extends ChatMessageWithSender {
 
     // Changing message as you want
     @Override
-    public Text getChangedMessage() {
+    public ChatMessage generateChangedMsg() {
         MutableText newMsg = m_message.copy().setStyle(Style.EMPTY);
-
-        // Should call addExtraStuff(newMsg) at return
-        return addExtraStuff(newMsg);
+        m_changedMsg = newMsg;
+        return this;
     }
 }

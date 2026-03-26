@@ -57,10 +57,9 @@ public class ExampleMessage extends ChatMessage {
 
     // Changing message as you want
     @Override
-    public Text getChangedMessage() {
+    public ChatMessage generateChangedMsg() {
         MutableText newMsg = m_message.copy().setStyle(Style.EMPTY);
-
-        // Should call addExtraStuff(newMsg) at return
-        return addExtraStuff(newMsg);
+        m_changedMsg = newMsg;
+        return this;
     }
 }
