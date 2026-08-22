@@ -20,12 +20,10 @@
 package org.ayoree.chatimprove.template;
 
 import java.util.function.Predicate;
-
+import net.minecraft.network.chat.Component;
 import org.ayoree.chatimprover.api.Filter;
 
 import com.google.auto.service.AutoService;
-
-import net.minecraft.text.Text;
 
 public class FilterImpl extends Filter {
     
@@ -33,7 +31,7 @@ public class FilterImpl extends Filter {
     @AutoService(Provider.class)
     public static class EmptyFilterProviderImpl extends AddonInformerImpl implements Provider {
         @Override
-        public Predicate<Text> validator() {
+        public Predicate<Component> validator() {
             return text -> text.getString().isBlank();
         }
     }
@@ -42,7 +40,7 @@ public class FilterImpl extends Filter {
     @AutoService(Provider.class)
     public static class AdsFilterProviderImpl extends AddonInformerImpl implements Provider {
         @Override
-        public Predicate<Text> validator() {
+        public Predicate<Component> validator() {
             return text -> {
                 return (
                     text.getString().contains("КУПИ ДАНАТ!")

@@ -21,20 +21,18 @@ package org.ayoree.chatimprove.template.messages;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
-
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
 import org.ayoree.chatimprove.template.AddonInformerImpl;
 import org.ayoree.chatimprover.api.ChatMessage;
 import org.ayoree.chatimprover.api.ChatMessageWithSender;
 
 import com.google.auto.service.AutoService;
 
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-
 // extends `ChatMessageWithSender`
 public class ExampleMessageWithSender extends ChatMessageWithSender {
-    public ExampleMessageWithSender(Text message) {
+    public ExampleMessageWithSender(Component message) {
         super(message);
         // Setting senderNick
         setSenderNick(getMessageStr().substring(0, getMessageStr().indexOf(' '))); // !!!
@@ -44,7 +42,7 @@ public class ExampleMessageWithSender extends ChatMessageWithSender {
     @AutoService(Provider.class)
     public static class ProviderImpl extends AddonInformerImpl implements Provider {
         @Override
-        public Predicate<Text> validator() {
+        public Predicate<Component> validator() {
             return message -> {
                 return (
                     message.getString().startsWith("CoolNick -> ...")
@@ -52,7 +50,7 @@ public class ExampleMessageWithSender extends ChatMessageWithSender {
             };
         }
         @Override
-        public Function<Text, ChatMessage> creator() {
+        public Function<Component, ChatMessage> creator() {
             return ExampleMessage::new;
         }
     }
@@ -60,7 +58,7 @@ public class ExampleMessageWithSender extends ChatMessageWithSender {
     // Changing message as you want
     @Override
     public ChatMessage generateChangedMsg() {
-        MutableText newMsg = m_message.copy().setStyle(Style.EMPTY);
+        MutableComponent newMsg = m_message.copy().setStyle(Style.EMPTY);
         m_changedMsg = newMsg;
         return this;
     }

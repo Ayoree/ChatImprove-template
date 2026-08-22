@@ -21,18 +21,16 @@ package org.ayoree.chatimprove.template.messages;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
-
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
 import org.ayoree.chatimprove.template.AddonInformerImpl;
 import org.ayoree.chatimprover.api.ChatMessage;
 
 import com.google.auto.service.AutoService;
 
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-
 public class ExampleMessage extends ChatMessage {
-    public ExampleMessage(Text message) {
+    public ExampleMessage(Component message) {
         super(message);
     }
 
@@ -42,7 +40,7 @@ public class ExampleMessage extends ChatMessage {
         // ExampleMessage instance will be created only if original message passes this validator
         // In this case ExampleMessage instance will be created only if original message contains "BlaBlaBla"
         @Override
-        public Predicate<Text> validator() {
+        public Predicate<Component> validator() {
             return message -> {
                 return (
                     message.getString().contains("BlaBlaBla")
@@ -50,7 +48,7 @@ public class ExampleMessage extends ChatMessage {
             };
         }
         @Override
-        public Function<Text, ChatMessage> creator() {
+        public Function<Component, ChatMessage> creator() {
             return ExampleMessageWithSender::new;
         }
     }
@@ -58,7 +56,7 @@ public class ExampleMessage extends ChatMessage {
     // Changing message as you want
     @Override
     public ChatMessage generateChangedMsg() {
-        MutableText newMsg = m_message.copy().setStyle(Style.EMPTY);
+        MutableComponent newMsg = m_message.copy().setStyle(Style.EMPTY);
         m_changedMsg = newMsg;
         return this;
     }
