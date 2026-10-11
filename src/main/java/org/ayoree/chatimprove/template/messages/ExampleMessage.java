@@ -49,7 +49,7 @@ public class ExampleMessage extends ChatMessage {
         }
         @Override
         public Function<Component, ChatMessage> creator() {
-            return ExampleMessageWithSender::new;
+            return ExampleMessage::new;
         }
     }
 

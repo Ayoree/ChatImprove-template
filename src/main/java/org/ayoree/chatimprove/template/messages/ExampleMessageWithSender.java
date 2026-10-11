@@ -51,7 +51,7 @@ public class ExampleMessageWithSender extends ChatMessageWithSender {
         }
         @Override
         public Function<Component, ChatMessage> creator() {
-            return ExampleMessage::new;
+            return ExampleMessageWithSender::new;
         }
     }
 

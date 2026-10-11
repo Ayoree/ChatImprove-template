@@ -17,9 +17,9 @@ repositories {
 	// ModMenu
 	maven { url = "https://maven.terraformersmc.com/" }
 	// OWO lib
-	maven { url 'https://maven.wispforest.io' }
+	maven { url = 'https://maven.wispforest.io' }
 	// kdl4j, a transitive dependency of OWO lib
-	maven { url 'https://jitpack.io' }
+	maven { url = 'https://jitpack.io' }
 	// ChatImprover
 	maven {
         url = uri("https://maven.pkg.github.com/Ayoree/ChatImprover")
